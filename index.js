@@ -11,10 +11,10 @@ function createMenuItem(name, cost, category){
 }
 
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
+
 console.log(createMenuItem('Pizza', '12', 'Lunch'));
 console.log(createMenuItem('French Fries', '8', 'Snack'));
 console.log(createMenuItem('Salad', '13', 'Lunch'));
-
 
 /* Task 2: You're having a lunch special! 25% off for teachers and students, 10% off for everyone else. Add a method to your burger object that automatically calculates price given a string as a parameter. 
 
@@ -33,7 +33,6 @@ burger.discount = function (string) {
     console.log(burger.price * .9);
   }
 }
-
 burger.discount("teacher");
 burger.discount("student");
 burger.discount("public");
@@ -76,10 +75,10 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * For example, if getReviewByIndex is invoked with reviews and the number 0
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
+
 function getReviewByIndex(array, index) {
     return `${array[index].name} gave the restaurant a ${array[index].rating} star review, and their feedback was: ${array[index].feedback}`;
   }
-
   console.log(getReviewByIndex(reviews, 0));
   
 
@@ -100,8 +99,6 @@ function getLastReview(array) {
   }
   console.log(getLastReview(reviews)); 
 
-
-
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
 /** STRETCH 1: Write a function called `getReviewByRating` that returns an array containing all reviews in a certain range. Your function should accept: 
@@ -116,9 +113,17 @@ function getLastReview(array) {
     {name:"Lauren", rating: 4, feedback: "Absolutely love that they have karaoke Fridays! Food and drink selection is okay."}]
 */
 
- function getReviewByRating(/* code here */) {
-    /* code here */
+ function getReviewByRating(arr, num) {
+    let newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (Math.floor(arr[i].rating) === num) {
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   }
+
+  console.log(getReviewByRating(reviews, 4));
 
   
 /** STRETCH 2: Write a function called 'getLongestReview' that returns an array containing all reviews longer than 15 words. 
@@ -134,10 +139,18 @@ and should return an array of objects.
     {name: "Brett", rating: 3, feedback: "great selection of snacks and a nice cafe area to get work done during the day."},
     {name: "Julius", rating: 2, feedback: "I was largely unimpressed by this venue. Nothing special on the menu and too expensive. The atmosphere is polarizing, and not for me, but I think some would like it." }]
 */
-  function getLongReviews(/* code here */) {
-    /* code here */
+
+  function getLongReviews(arr) {
+    let longReviews = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].feedback.split(" ").length > 15) {
+          longReviews.push(arr[i]);
+      }
+    }
+    return longReviews;
   }
   
+  console.log(getLongReviews(reviews));
 
 /* STRETCH 3:  This challenge is not related to the data above! 
 
@@ -157,7 +170,17 @@ The returned object should have the following characteristics:
 */
 
 
-function carMaker(/* code here */) {
-    /* code here */
-    
+function carMaker(number) {
+    return {
+      odometer: number,
+      drive: function (distance) {
+        this.odometer += distance;
+        return this.odometer;
+      }
+    };
 }
+
+let Honda = carMaker(0);
+console.log(Honda);
+Honda.drive(55);
+console.log(Honda);
